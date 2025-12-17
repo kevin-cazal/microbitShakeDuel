@@ -6,41 +6,42 @@
 // 
 // To win a duel: shake the Micro:Bit 25 time before your opponent does the same.
 // 
-// On start:
+// [Basic] On start:
 // 
-// ..Initialize variables: numberOfShake, numberOfWin, otherNumberOfWin to 0
+// ..[Variables] Initialize variables: numberOfShake, numberOfWin, otherNumberOfWin to 0
 // 
-// ..Set your radio group number to the same value as your opponent's radio group number
+// ..[Radio] Set your radio group number to the same value as your opponent's radio group number
 // 
-// On shake:
+// [Input] On shake:
 // 
-// ..Increase numberOfShake by 1
+// ..Increase numberOfShake by 1; [Led] Turn on leds to show numberOfShake
 // 
 // ..If numberOfShake reach 25:
 // 
-// ....Increase numberOfWin by 1
+// ....Increase numberOfWin by 1; [Music] Play a melody
 // 
-// ....Reset numberOfShake to 0
+// ....Reset numberOfShake to 0; [Basic] Clear screen
 // 
 // ....Send numberOfWin to the opponent
 // 
-// ....If numberOfWin reach 2:
+// ....[Logic] If numberOfWin reach 2:
 // 
-// ......You win !
+// ......You win ! ; [Led] Show a Happy face; [Advanced/Controls] Reset the Micro:Bit
 // 
-// On radio received number:
+// [Input] On radio received number:
 // 
-// ..Set this number as a new value for otherNumberOfWin
+// ..Set this number as a new value for otherNumberOfWin; [Music] Play a melody
 // 
-// ..Reset numberOfShake to 0
+// ..Reset numberOfShake to 0; [Basic] Clear Screen
 // 
-// ..If otherNumberOfWin reach 2:
+// ..[Logic] If otherNumberOfWin reach 2:
 // 
-// ....You lose !
+// ....You lose ! [Led] Show a Sad face ; [Advanced/Controls] Reset the Micro:Bit
 radio.onReceivedNumber(function (receivedNumber) {
     otherCompleted = receivedNumber
     music.play(music.stringPlayable("C5 A B G A F G E ", 500), music.PlaybackMode.InBackground)
     shake = 0
+    basic.clearScreen()
     if (otherCompleted == 2) {
         basic.showIcon(IconNames.Sad)
         basic.pause(2000)
