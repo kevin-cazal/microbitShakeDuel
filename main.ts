@@ -10,11 +10,11 @@ radio.onReceivedNumber(function (receivedNumber) {
 input.onGesture(Gesture.Shake, function () {
     led.plot(shake % 5, shake / 5)
     shake += 1
-    if (shake >= 25) {
+    if (shake == 25) {
         music.play(music.stringPlayable("E D G F B A C5 B ", 500), music.PlaybackMode.InBackground)
         basic.pause(1000)
-        shake = 0
         basic.clearScreen()
+        shake = 0
         completed += 1
         radio.sendNumber(completed)
         if (completed == 2) {
